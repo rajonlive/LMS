@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeadController extends Controller
 {
@@ -13,7 +15,17 @@ class LeadController extends Controller
      */
     public function index()
     {
-        return view('Lead.index');
+        $user = Auth::user();
+        $check = $user->hasPermissionTo('lead-management');
+
+        if(!$check) {
+            flash()->addWarning('Access Denied');
+            return redirect()->route('dashboard');
+        }
+
+      
+
+        return view('lead.index');
     }
 
     /**

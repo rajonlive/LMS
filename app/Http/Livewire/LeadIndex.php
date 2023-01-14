@@ -24,10 +24,12 @@ class LeadIndex extends Component
     //     flash()->addFlash('Lead Delete Successfully');
     // }
 
-    public function leadDelete($id, FlasherInterface $flasher) {
+    public function leadDelete($id) {
+        // permission_check('lead-management');
+      
         $lead = Lead::findorFail($id);
         $lead->delete();
 
-       $flasher->addSuccess('Lead Deleted');
+       flash()->addSuccess('Lead Deleted');
     }
 }

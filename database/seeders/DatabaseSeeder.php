@@ -39,7 +39,9 @@ class DatabaseSeeder extends Seeder
          'name' => 'Laravel',
          'description' => 'Laravel is Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, harum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, harum.',
          'image' => 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg',
-         'user_id' => $teacher->id
+         'user_id' => $teacher->id,
+         'price' => 500
+
       ]);
 
       Curriculum::factory()->count(10)->create();

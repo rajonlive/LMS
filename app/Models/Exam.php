@@ -12,4 +12,5 @@ class Exam extends Model
     public function homeworks() {
         return $this->hasMany(Homework::class);
     }
+
 }

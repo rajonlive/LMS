@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->float('amount');
-            $table->unsignedBigInteger('invoice_id');
+            $table->string('name')->nullable();
+            $table->string('phone');
+            $table->string('email')->nullable();
             $table->timestamps();
-
-            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('leads');
     }
 };

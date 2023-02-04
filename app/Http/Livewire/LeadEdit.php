@@ -13,23 +13,20 @@ class LeadEdit extends Component
     public $email;
     public $phone;
 
-
     public $note;
 
     public function mount() {
         $lead = Lead::findOrFail($this->lead_id);
         $this->lead_id = $lead->id;
-        $this-> name = $lead->name;
+        $this->name = $lead->name;
         $this->email = $lead->email;
         $this->phone = $lead->phone;
-      
-
     }
 
     public function render()
     {
-        $lead = Lead::findOrFail($this->lead_id);
-       
+        $lead = Lead::findOrfail($this->lead_id);
+
         return view('livewire.lead-edit', [
             'notes' => $lead->notes
         ]);
@@ -43,7 +40,6 @@ class LeadEdit extends Component
     public function submitForm() {
         sleep(5);
 
-
         $lead = Lead::findOrFail($this->lead_id);
 
         $this->validate();
@@ -53,17 +49,21 @@ class LeadEdit extends Component
         $lead->phone = $this->phone;
         $lead->save();
 
-        flash()->addSuccess('Lead Update Successfully');
+        flash()->addSuccess('Lead updated successfully');
     }
 
     public function addNote() {
+        $lead = Lead::findOrFail($this->lead_id);
         $note = new Note();
         $note->description = $this->note;
-        $note->lead_id = $this->lead_id;
         $note->save();
+
+        $lead->notes()->attach($note->id);
 
         $this->note = '';
 
-        flash()->addSuccess('Nore Added Successfully');
+        flash()->addSuccess('Note added successfully');
     }
+
+
 }

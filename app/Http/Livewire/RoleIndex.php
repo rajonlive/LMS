@@ -11,7 +11,7 @@ class RoleIndex extends Component
     {
         $roles = Role::where('name', '!=', 'Super Admin')->get();
         return view('livewire.role-index', [
-            'roles'=>$roles
+            'roles' => $roles
         ]);
     }
 }

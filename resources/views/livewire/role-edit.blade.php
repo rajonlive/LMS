@@ -1,3 +1,3 @@
 <div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
+    {{-- Because she competes with no one, no one can compete with her. --}}
 </div>

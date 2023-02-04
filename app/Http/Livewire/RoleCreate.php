@@ -3,36 +3,39 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleCreate extends Component
 {
+
     public $selectedPermissions = [];
     public $name;
-
     public function render()
     {
-        $permission = Permission::all();
-        return view('livewire.role-create', [
-            'permissions' => $permission
-        ]);
-       
-    }
 
+
+        $permissions = Permission::all();
+        return view('livewire.role-create', [
+            'permissions' => $permissions
+        ]);
+
+
+    }
     protected $rules = [
         'name' => 'required|unique:roles,name',
         'selectedPermissions' => 'required|array|min:1',
     ];
 
-    public function formSubmit(){
+
+    public function formSubmit() {
         $this->validate();
 
         $role = Role::create(['name' => $this->name]);
-      $role->SyncPermissions($this->selectedPermissions);
+        $role->syncPermissions($this->selectedPermissions);
 
-      flash()->addSuccess('Role Created Successfully');
-      return redirect()->route('role.index');
-      
+
+        flash()->addSuccess('Role created successfully');
+        return redirect()->route('role.index');
     }
 }

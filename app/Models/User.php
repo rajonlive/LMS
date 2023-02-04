@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function invoices() {
         return $this->hasMany(Invoice::class);
     }
+
+    public function is_present($curriculum_id) {
+        return Attendance::where('user_id', $this->id)->where('curriculum_id', $curriculum_id)->exists();
+    }
+
 }

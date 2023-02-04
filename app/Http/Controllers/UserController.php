@@ -13,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        //
         permission_check('user-management');
+
         return view('user.index');
     }
 
@@ -24,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        //
         permission_check('user-management');
+
         return view('user.create');
     }
 
@@ -58,7 +62,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //permission_check('user-management');
+        //
+        permission_check('user-management');
+
         return view('user.edit');
     }
 

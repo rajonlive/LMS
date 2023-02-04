@@ -9,12 +9,13 @@ class Invoice extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
+
         'due_date',
-        'paid_date',
-        'user_id',
+        'paid_daate',
+        'user_id'
     ];
+
 
     public function items() {
         return $this->hasMany(InvoiceItem::class);
@@ -27,6 +28,7 @@ class Invoice extends Model
     public function payments() {
         return $this->hasMany(Payment::class);
     }
+
 
     public function amount() {
         $amounts = [
@@ -47,4 +49,5 @@ class Invoice extends Model
 
         return $amounts;
     }
+
 }
